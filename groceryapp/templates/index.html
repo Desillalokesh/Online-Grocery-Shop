@@ -1,39 +1,105 @@
+
 {% extends 'navigation.html' %}
 {% load static %}
 {% block body %}
+
+
+<!-- Add AOS Library for Animations -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
 <style>
-    img{
-        height:500px;
+
+    .btn-custom {
+        border-radius: 25px;
+        padding: 10px 20px;
+        font-size: 18px;
+        transition: all 0.3s ease-in-out;
     }
-    .carousel-caption {
-        background-color: rgba(0,0,0,0.5);
+
+    .btn-custom:hover {
+        transform: scale(1.1);
+    }
+
+    /* Cards */
+    .card {
+        border: none;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s ease-in-out;
+    }
+
+    .card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.3);
+    }
+
+    .card img {
+        height: 250px;
+        width: 400px;
+        object-fit: cover;
+    }
+
+    /* Animations */
+    [data-aos] {
+        opacity: 0;
+        transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
+    }
+
+    .aos-init {
+        opacity: 1 !important;
     }
 </style>
-<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-  <ol class="carousel-indicators">
-    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-  </ol>
-  <div class="carousel-inner">
-    {% for i in data %}
-        <div class="carousel-item {% if forloop.counter == 1 %}active{% endif %}">
-          <img class="d-block w-100" src="{{i.image.url}}" alt="{{i.title}}">
-          <div class="carousel-caption d-none d-md-block">
-            <h5>{{i.title}}</h5>
-            <p>{{i.description}}</p>
-          </div>
-        </div>
-    {% endfor %}
 
-  </div>
-  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
+
+<!-- Products Section -->
+<div class="container mt-5">
+    <h2 class="text-center mb-4" data-aos="fade-up">Trending Products</h2>
+    <div class="row">
+        <!-- Product 1 -->
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+            <div class="card">
+                <img src="https://img.freepik.com/free-photo/busy-businesswoman-with-digital-devices_1232-774.jpg?t=st=1740660647~exp=1740664247~hmac=e4554ab12a24e1bb72f8ce4c45cbba8a5a4409dcb5afb45964c605678085ed40&w=1060" class="card-img-top" alt="Product 1">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Latest Gadgets</h5>
+                    <p class="card-text">Explore the most advanced gadgets at the best prices.</p>
+                    <a href="{% url 'registration' %}" class="btn btn-primary">Shop Now</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Product 2 -->
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+            <div class="card">
+                <img src="https://img.freepik.com/free-photo/spring-wardrobe-switch-still-life_23-2150176694.jpg?t=st=1740659988~exp=1740663588~hmac=0b6f00406bb64b4f2c7be1bf6729ad856fcfd2c18d6518e3aa850d531f6c0f39&w=1060" class="card-img-top" alt="Product 2">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Fashion Trends</h5>
+                    <p class="card-text">Stay stylish with the latest fashion collections.</p>
+                    <a href="{% url 'registration' %}" class="btn btn-success">Shop Now</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Product 3 -->
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+            <div class="card">
+                <img src="https://img.freepik.com/free-photo/woman-posing-with-stylish-footwear-summer-fashion-bag-long-legs-shopping_285396-497.jpg?t=st=1740660554~exp=1740664154~hmac=14ee9c39b201e490ea9355a2ecb4d008a30e51c07e6799ab0289d8787f5d4d38&w=1060" class="card-img-top" alt="Product 3">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Trending Footwear</h5>
+                    <p class="card-text">Get the best comfort and style in footwear.</p>
+                    <a href="{% url 'registration' %}" class="btn btn-warning">Shop Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+
+<!-- Initialize AOS -->
+<script>
+  AOS.init();
+</script>
+
+
 {% endblock %}
